@@ -5,12 +5,19 @@
 ├── index.html
 ├── package.json
 ├── public
-│   └── vite.svg
 ├── src
 │   ├── App.css
 │   ├── App.tsx
 │   ├── assets
 │   │   └── react.svg
+│   ├── components
+│   │   ├── AboutPage.tsx
+│   │   ├── Base.tsx
+│   │   ├── Footer.tsx
+│   │   ├── GreetPage.tsx
+│   │   ├── IndexPage.tsx
+│   │   ├── Nav.tsx
+│   │   └── SignupPage.tsx
 │   ├── index.css
 │   ├── main.tsx
 │   └── vite-env.d.ts
@@ -20,4 +27,4 @@
 ├── tsconfig.node.json
 └── vite.config.ts
 
-4 directories, 17 files
+5 directories, 23 files
