@@ -10,6 +10,7 @@
     "npm:eslint-plugin-react-refresh@~0.4.19": "0.4.19_eslint@9.23.0",
     "npm:eslint@^9.21.0": "9.23.0",
     "npm:globals@^15.15.0": "15.15.0",
+    "npm:lucide@0.487": "0.487.0",
     "npm:react-dom@19": "19.1.0_react@19.1.0",
     "npm:react-router-dom@^7.4.1": "7.4.1_react@19.1.0_react-dom@19.1.0__react@19.1.0",
     "npm:react@19": "19.1.0",
@@ -909,6 +910,9 @@
     "lodash.merge@4.6.2": {
       "integrity": "sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ=="
     },
+    "lucide@0.487.0": {
+      "integrity": "sha512-SJk/ANI/Qu6ieS1uZqy6ZQcEB7/oH+gVtCGrmzcvSQKJVWsGSlbR/SMTxIdqqbb1/h+eJBSVkWB7I0jGnjuOFw=="
+    },
     "merge2@1.4.1": {
       "integrity": "sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg=="
     },
@@ -1176,6 +1180,7 @@
         "npm:eslint-plugin-react-refresh@~0.4.19",
         "npm:eslint@^9.21.0",
         "npm:globals@^15.15.0",
+        "npm:lucide@0.487",
         "npm:react-dom@19",
         "npm:react-router-dom@^7.4.1",
         "npm:react@19",
