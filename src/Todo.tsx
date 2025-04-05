@@ -11,23 +11,26 @@ export default function ToDo() {
     const [sortBy, setSortBy] = useState<SortType>('title');
     const [searchTerm, setSearchTerm] = useState('');
     const [newTodo, setNewTodo] = useState('');
+    const [darkMode, setDarkMode] = useState(false);
 
-    // Filter and sort todos
+    const toggleTheme = () => {
+        const html = document.documentElement;
+        html.classList.toggle("dark");
+        setDarkMode(prev => !prev);
+    };
+
+
     const filteredTodos = todos.filter(todo => {
         const matchesFilter = filter === 'all' ||
             (filter === 'completed' && todo.completed) ||
             (filter === 'pending' && !todo.completed);
 
         const matchesSearch = todo.title.toLowerCase().includes(searchTerm.toLowerCase());
-
         return matchesFilter && matchesSearch;
     });
 
     const sortedTodos = [...filteredTodos].sort((a, b) => {
-        if (sortBy === 'title') {
-            return a.title.localeCompare(b.title);
-        }
-        // Add other sorting logic here
+        if (sortBy === 'title') return a.title.localeCompare(b.title);
         return 0;
     });
 
@@ -58,123 +61,126 @@ export default function ToDo() {
         }
     };
 
-    const handleKeyPress = (e: React.KeyboardEvent) => {
-        if (e.key === 'Enter') {
-            addTodo();
-        }
-    };
-
     return (
-        <main className="min-h-screen bg-gray-50 py-10 px-4">
-            <div className="max-w-md mx-auto">
-                <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">RTTD ToDos</h1>
-
-                {/* Todo Stats */}
-                <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-                    <h2 className="text-xl font-semibold text-gray-800 mb-4">ToDo List</h2>
-
-                    <div className="grid grid-cols-3 gap-4 mb-6">
-                        <div className="bg-blue-50 p-3 rounded-lg text-center">
-                            <p className="text-sm text-gray-500">Total</p>
-                            <p className="font-bold text-blue-600">{todos.length}</p>
-                        </div>
-                        <div className="bg-green-50 p-3 rounded-lg text-center">
-                            <p className="text-sm text-gray-500">Completed</p>
-                            <p className="font-bold text-green-600">{completedCount}</p>
-                        </div>
-                        <div className="bg-yellow-50 p-3 rounded-lg text-center">
-                            <p className="text-sm text-gray-500">Pending</p>
-                            <p className="font-bold text-yellow-600">{pendingCount}</p>
-                        </div>
-                    </div>
-
-                    {/* Controls */}
-                    <div className="space-y-4">
-                        <div className="flex items-center justify-between">
-                            <label className="text-gray-600">Filter:</label>
-                            <select
-                                className="border border-gray-300 rounded-lg p-2 w-40"
-                                value={filter}
-                                onChange={(e) => setFilter(e.target.value as FilterType)}
-                            >
-                                <option value="all">All</option>
-                                <option value="completed">Completed</option>
-                                <option value="pending">Pending</option>
-                            </select>
-                        </div>
-
-                        <div className="flex items-center justify-between">
-                            <label className="text-gray-600">Sort By:</label>
-                            <select
-                                className="border border-gray-300 rounded-lg p-2 w-40"
-                                value={sortBy}
-                                onChange={(e) => setSortBy(e.target.value as SortType)}
-                            >
-                                <option value="title">Title</option>
-                                <option value="date">Date</option>
-                                <option value="status">Status</option>
-                            </select>
-                        </div>
-
-                        <div className="flex items-center justify-between">
-                            <label className="text-gray-600">Search:</label>
-                            <input
-                                type="text"
-                                placeholder="Search todos"
-                                className="border border-gray-300 rounded-lg p-2 flex-1 ml-2"
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                            />
-                        </div>
-                    </div>
-                </div>
-
-                {/* Todo List */}
-                <div className="space-y-2 mb-6">
-                    {sortedTodos.map((todo) => (
-                        <div
-                            key={todo.id}
-                            className="flex items-center bg-white p-4 rounded-lg shadow hover:shadow-md transition-shadow"
+        <main>
+            <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 py-10 px-4 transition-colors duration-300">
+                <div className="max-w-md mx-auto">
+                    <div className="flex justify-between items-center mb-6">
+                        <h1 className="text-4xl font-extrabold text-green-700 dark:text-green-400">
+                            🧁 RTTD ToDos
+                        </h1>
+                        <button
+                            onClick={toggleTheme}
+                            className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg"
                         >
-                            <input
-                                type="checkbox"
-                                checked={todo.completed}
-                                onChange={() => toggleTodo(todo.id)}
-                                className="h-5 w-5 text-blue-600 rounded focus:ring-blue-500 mr-3"
-                            />
-                            <span
-                                className={`flex-1 ${todo.completed ? 'line-through text-gray-400' : 'text-gray-700'}`}
-                            >
-                                {todo.title}
-                            </span>
-                            <button
-                                onClick={() => deleteTodo(todo.id)}
-                                className="text-red-500 hover:text-red-700 ml-2"
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                </svg>
-                            </button>
-                        </div>
-                    ))}
-                </div>
+                            {darkMode ? '🌞 Light' : '🌙 Dark'}
+                        </button>
+                    </div>
 
-                {/* Add Todo */}
-                <div className="flex">
-                    <input
-                        type="text"
-                        placeholder="Add a new todo"
-                        className="border border-gray-300 rounded-l-lg p-3 flex-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        value={newTodo}
-                        onChange={(e) => setNewTodo(e.target.value)}
-                        onKeyPress={handleKeyPress}
-                    />
-                    <button
-                        onClick={addTodo}
-                        className="bg-blue-600 hover:bg-blue-700 text-white rounded-r-lg px-4 py-3 transition-colors"
-                    >
-                        Add
-                    </button>
+                    {/* Stats */}
+                    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-6 mb-6 border border-gray-200 dark:border-gray-700">
+                        <h2 className="text-xl font-semibold mb-4">ToDo Stats</h2>
+                        <div className="grid grid-cols-3 gap-4 mb-6">
+                            <div className="bg-green-100 dark:bg-green-700 p-3 rounded-lg text-center">
+                                <p className="text-sm">Total</p>
+                                <p className="font-bold">{todos.length}</p>
+                            </div>
+                            <div className="bg-green-200 dark:bg-green-600 p-3 rounded-lg text-center">
+                                <p className="text-sm">Completed</p>
+                                <p className="font-bold">{completedCount}</p>
+                            </div>
+                            <div className="bg-red-100 dark:bg-red-600 p-3 rounded-lg text-center">
+                                <p className="text-sm">Pending</p>
+                                <p className="font-bold">{pendingCount}</p>
+                            </div>
+                        </div>
+
+                        {/* Controls */}
+                        <div className="space-y-4">
+                            <div className="flex items-center justify-between">
+                                <label>Filter:</label>
+                                <select
+                                    className="border border-gray-300 bg-white dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white rounded-lg p-2 w-40"
+                                    value={filter}
+                                    onChange={(e) => setFilter(e.target.value as FilterType)}
+                                >
+                                    <option value="all">All</option>
+                                    <option value="completed">Completed</option>
+                                    <option value="pending">Pending</option>
+                                </select>
+                            </div>
+
+                            <div className="flex items-center justify-between">
+                                <label>Sort By:</label>
+                                <select
+                                    className="border border-gray-300 bg-white dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white rounded-lg p-2 w-40"
+                                    value={sortBy}
+                                    onChange={(e) => setSortBy(e.target.value as SortType)}
+                                >
+                                    <option value="title">Title</option>
+                                    <option value="date">Date</option>
+                                    <option value="status">Status</option>
+                                </select>
+                            </div>
+
+                            <div className="flex items-center justify-between">
+                                <label>Search:</label>
+                                <input
+                                    type="text"
+                                    placeholder="Search todos"
+                                    className="border border-gray-300 bg-white dark:bg-gray-700 dark:border-gray-600 text-gray-700 dark:text-white rounded-lg p-2 flex-1 ml-2"
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* List */}
+                    <div className="space-y-2 mb-6">
+                        {sortedTodos.map((todo) => (
+                            <div
+                                key={todo.id}
+                                className="flex items-center bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow border-l-4 border-green-400"
+                            >
+                                <input
+                                    type="checkbox"
+                                    checked={todo.completed}
+                                    onChange={() => toggleTodo(todo.id)}
+                                    className="h-5 w-5 text-green-600 dark:text-green-400 mr-3"
+                                />
+                                <span className={`flex-1 ${todo.completed ? 'line-through text-gray-400' : ''}`}>
+                                    {todo.title}
+                                </span>
+                                <button
+                                    onClick={() => deleteTodo(todo.id)}
+                                    className="text-red-500 hover:text-red-700 ml-2"
+                                >
+                                    🗑️
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Add Todo */}
+                    <div className="flex">
+                        <input
+                            type="text"
+                            placeholder="Add a new todo"
+                            className="border border-gray-300 bg-white dark:bg-gray-800 dark:border-gray-600 text-gray-700 dark:text-white rounded-l-lg p-3 flex-1"
+                            value={newTodo}
+                            onChange={(e) => setNewTodo(e.target.value)}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter') addTodo();
+                            }}
+                        />
+                        <button
+                            onClick={addTodo}
+                            className="bg-green-500 hover:bg-green-600 text-white rounded-r-lg px-4 py-3"
+                        >
+                            Add
+                        </button>
+                    </div>
                 </div>
             </div>
         </main>
