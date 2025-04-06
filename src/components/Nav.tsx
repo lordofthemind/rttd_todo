@@ -17,6 +17,12 @@ export default function Nav() {
                 Features
             </Link>
             <Link
+                to="/greet"
+                className="px-4 py-2 text-green-800 font-medium hover:bg-green-100 rounded-lg transition-colors"
+            >
+                Greet
+            </Link>
+            <Link
                 to="/todos"
                 className="px-4 py-2 text-green-800 font-medium hover:bg-green-100 rounded-lg transition-colors"
             >
@@ -39,6 +45,12 @@ export default function Nav() {
                 className="px-4 py-2 text-green-800 font-medium hover:bg-green-100 rounded-lg transition-colors"
             >
                 About
+            </Link>
+            <Link
+                to="/signup"
+                className="px-4 py-2 text-green-800 font-medium hover:bg-green-100 rounded-lg transition-colors"
+            >
+                Signup
             </Link>
         </nav>
     )
