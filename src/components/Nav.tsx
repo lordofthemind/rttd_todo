@@ -8,6 +8,7 @@ export default function Nav() {
             <Link to="/about" className="text-green-800 font-semibold hover:underline">About</Link>
             <Link to="/greet" className="text-green-800 font-semibold hover:underline">Greet</Link>
             <Link to="/signup" className="text-green-800 font-semibold hover:underline">Signup</Link>
+            <Link to="/todos" className="text-green-800 font-semibold hover:underline">Todos</Link>
         </nav>
     )
 }
