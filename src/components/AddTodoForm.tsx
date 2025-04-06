@@ -10,12 +10,9 @@ export default function AddTodoForm({ onSubmit }: AddTodoFormProps) {
 
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-
         if (!input.trim()) return;
-
         onSubmit(input);
         setInput("")
-
     }
 
     return (
