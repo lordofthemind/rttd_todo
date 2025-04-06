@@ -3,36 +3,42 @@ import { Link } from 'react-router-dom'
 
 export default function Nav() {
     return (
-        <nav className="flex justify-center space-x-6 mb-8">
+        <nav className="flex flex-wrap justify-center gap-4 mb-8">
             <Link
                 to="/"
-                className="text-green-800 font-semibold hover:text-green-600 px-3 py-2 rounded-lg transition-colors"
+                className="px-4 py-2 text-green-800 font-medium hover:bg-green-100 rounded-lg transition-colors"
             >
                 Home
             </Link>
             <Link
-                to="/about"
-                className="text-green-800 font-semibold hover:text-green-600 px-3 py-2 rounded-lg transition-colors"
+                to="/features"
+                className="px-4 py-2 text-green-800 font-medium hover:bg-green-100 rounded-lg transition-colors"
             >
-                About
-            </Link>
-            <Link
-                to="/greet"
-                className="text-green-800 font-semibold hover:text-green-600 px-3 py-2 rounded-lg transition-colors"
-            >
-                Greet
-            </Link>
-            <Link
-                to="/signup"
-                className="text-green-800 font-semibold hover:text-green-600 px-3 py-2 rounded-lg transition-colors"
-            >
-                Signup
+                Features
             </Link>
             <Link
                 to="/todos"
-                className="text-green-800 font-semibold hover:text-green-600 px-3 py-2 rounded-lg transition-colors"
+                className="px-4 py-2 text-green-800 font-medium hover:bg-green-100 rounded-lg transition-colors"
             >
                 Todos
+            </Link>
+            <Link
+                to="/contact"
+                className="px-4 py-2 text-green-800 font-medium hover:bg-green-100 rounded-lg transition-colors"
+            >
+                Contact
+            </Link>
+            <Link
+                to="/settings"
+                className="px-4 py-2 text-green-800 font-medium hover:bg-green-100 rounded-lg transition-colors"
+            >
+                Settings
+            </Link>
+            <Link
+                to="/about"
+                className="px-4 py-2 text-green-800 font-medium hover:bg-green-100 rounded-lg transition-colors"
+            >
+                About
             </Link>
         </nav>
     )

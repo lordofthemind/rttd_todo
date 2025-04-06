@@ -5,7 +5,7 @@ import TodoSummary from "./TodoSummary";
 import useTodos from "../hooks/useTodos";
 import Base from "./Base";
 
-export default function ToDo() {
+export default function ToDoPage() {
     const {
         todos,
         addTodo,

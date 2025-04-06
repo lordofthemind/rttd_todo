@@ -14,14 +14,17 @@
 │   │   ├── AboutPage.tsx
 │   │   ├── AddTodoForm.tsx
 │   │   ├── Base.tsx
+│   │   ├── ContactPage.tsx
+│   │   ├── FeaturesPage.tsx
 │   │   ├── Footer.tsx
 │   │   ├── GreetPage.tsx
 │   │   ├── IndexPage.tsx
 │   │   ├── Nav.tsx
+│   │   ├── SettingsPage.tsx
 │   │   ├── SignupPage.tsx
-│   │   ├── Todo.tsx
 │   │   ├── TodoItem.tsx
 │   │   ├── TodoList.tsx
+│   │   ├── TodoPage.tsx
 │   │   └── TodoSummary.tsx
 │   ├── data
 │   │   └── Todos.ts
@@ -38,4 +41,4 @@
 ├── tsconfig.node.json
 └── vite.config.ts
 
-8 directories, 31 files
+8 directories, 34 files

@@ -1,9 +1,13 @@
+// src/App.tsx
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import IndexPage from './components/IndexPage'
 import AboutPage from './components/AboutPage'
 import GreetPage from './components/GreetPage'
 import SignupPage from './components/SignupPage'
-import ToDo from './components/Todo'
+import ToDoPage from './components/TodoPage'
+import ContactPage from './components/ContactPage'
+import FeaturesPage from './components/FeaturesPage'
+import SettingsPage from './components/SettingsPage'
 
 function App() {
   return (
@@ -13,7 +17,10 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/greet" element={<GreetPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/todos" element={<ToDo />} />
+        <Route path="/todos" element={<ToDoPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/features" element={<FeaturesPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
       </Routes>
     </BrowserRouter>
   )
