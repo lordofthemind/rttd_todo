@@ -22,15 +22,24 @@ export default function ToodoList({
     })
 
     return (
-        <div className="space-y-2">
-            {todoSorted.map((todo) => (
-                <TodoItem
-                    key={todo.id}
-                    todo={todo}
-                    onCompleteChange={onCompleteChange}
-                    onDelete={onDelete}
-                />
-            ))}
-        </div>
+        <>
+            <div className="space-y-2">
+                {todoSorted.map((todo) => (
+                    <TodoItem
+                        key={todo.id}
+                        todo={todo}
+                        onCompleteChange={onCompleteChange}
+                        onDelete={onDelete}
+                    />
+                ))}
+            </div>
+            <div>
+                {todos.length === 0 && (
+                    <p className="text-center text-sm text-gray-500">
+                        No todos yet. Add a new one from above.
+                    </p>
+                )}
+            </div>
+        </>
     )
 }
