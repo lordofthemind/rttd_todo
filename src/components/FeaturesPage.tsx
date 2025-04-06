@@ -4,38 +4,38 @@ import Base from './Base';
 const features = [
     {
         icon: '⚡',
-        title: 'Lightning Fast',
-        description: 'Built with Vite for instant hot module replacement and optimized builds',
+        title: 'Blazing Fast',
+        description: 'Built with Vite for instant hot reloads',
         color: 'text-yellow-500'
     },
     {
-        icon: '🧠',
-        title: 'Type Safe',
-        description: 'TypeScript integration for robust development experience',
-        color: 'text-blue-500'
-    },
-    {
-        icon: '💅',
+        icon: '🎨',
         title: 'Beautiful UI',
-        description: 'Tailwind CSS for rapid, responsive styling',
+        description: 'Tailwind CSS for rapid styling',
         color: 'text-pink-500'
     },
     {
-        icon: '🦕',
-        title: 'Deno Powered',
-        description: 'Modern runtime with built-in TypeScript support',
-        color: 'text-green-500'
+        icon: '🛡️',
+        title: 'Type Safe',
+        description: 'TypeScript for robust code',
+        color: 'text-blue-500'
     },
     {
-        icon: '🔌',
-        title: 'Ready to Extend',
-        description: 'Pre-configured with common tools and patterns',
-        color: 'text-purple-500'
+        icon: '⚛️',
+        title: 'React Powered',
+        description: 'Modern component-based architecture',
+        color: 'text-cyan-500'
+    },
+    {
+        icon: '🦕',
+        title: 'Deno Runtime',
+        description: 'Secure JavaScript/TypeScript runtime',
+        color: 'text-green-500'
     },
     {
         icon: '🚀',
         title: 'Production Ready',
-        description: 'Optimized for deployment with best practices',
+        description: 'Optimized builds and best practices',
         color: 'text-red-500'
     }
 ];

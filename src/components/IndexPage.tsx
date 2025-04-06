@@ -5,6 +5,14 @@ import Base from './Base';
 export default function IndexPage() {
     const [clickCount, setClickCount] = useState(0);
     const [showWelcome, setShowWelcome] = useState(false);
+    const [techStack] = useState([
+        { name: 'React', icon: '⚛️', color: 'text-cyan-500' },
+        { name: 'TypeScript', icon: '🧠', color: 'text-blue-500' },
+        { name: 'Tailwind', icon: '💨', color: 'text-emerald-500' },
+        { name: 'Deno', icon: '🦕', color: 'text-green-500' },
+        { name: 'Vite', icon: '⚡', color: 'text-yellow-500' }
+    ]);
+    const [activeTech, setActiveTech] = useState<number | null>(null);
 
     const handleHelloClick = () => {
         setClickCount(prev => prev + 1);
@@ -28,29 +36,41 @@ export default function IndexPage() {
             <div className="space-y-8 text-center">
                 <div className="bg-gradient-to-r from-green-600 to-green-700 text-white rounded-2xl p-6 shadow-lg">
                     <h1 className="text-4xl font-bold mb-2">
-                        React ⚛️ TypeScript 🧠 Tailwind 💨 Deno 🦕
+                        Modern Web Development Stack
                     </h1>
                     <p className="text-green-100 text-lg">
-                        Your ultimate starter stack for modern web development
+                        Everything you need to build amazing applications
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <FeatureCard
-                        icon="⚡"
-                        title="Blazing Fast"
-                        description="Built with Vite for instant hot reloads"
-                    />
-                    <FeatureCard
-                        icon="🎨"
-                        title="Beautiful UI"
-                        description="Tailwind CSS for rapid styling"
-                    />
-                    <FeatureCard
-                        icon="🛡️"
-                        title="Type Safe"
-                        description="TypeScript for robust code"
-                    />
+                <div className="bg-white rounded-xl p-6 shadow-md max-w-2xl mx-auto">
+                    <h2 className="text-2xl font-bold text-green-700 mb-4">Explore Our Tech Stack</h2>
+                    <div className="flex flex-wrap justify-center gap-4 mb-6">
+                        {techStack.map((tech, index) => (
+                            <button
+                                key={tech.name}
+                                onClick={() => setActiveTech(index === activeTech ? null : index)}
+                                className={`px-4 py-2 rounded-lg transition-all ${activeTech === index ? 'bg-green-100 text-green-800 scale-105' : 'bg-gray-100 hover:bg-gray-200'}`}
+                            >
+                                <span className={`text-xl mr-2 ${tech.color}`}>{tech.icon}</span>
+                                {tech.name}
+                            </button>
+                        ))}
+                    </div>
+
+                    {activeTech !== null && (
+                        <div className="bg-green-50 p-4 rounded-lg text-left animate-fade-in">
+                            <h3 className="font-bold text-lg flex items-center mb-2">
+                                <span className={`text-2xl mr-2 ${techStack[activeTech].color}`}>
+                                    {techStack[activeTech].icon}
+                                </span>
+                                {techStack[activeTech].name}
+                            </h3>
+                            <p className="text-gray-700">
+                                {getTechDescription(techStack[activeTech].name)}
+                            </p>
+                        </div>
+                    )}
                 </div>
 
                 <div className="bg-white rounded-xl p-6 shadow-md max-w-md mx-auto">
@@ -79,13 +99,13 @@ export default function IndexPage() {
     );
 }
 
-// FeatureCard component for better organization
-function FeatureCard({ icon, title, description }: { icon: string, title: string, description: string }) {
-    return (
-        <div className="bg-white rounded-xl p-5 shadow-md hover:shadow-lg transition-shadow">
-            <div className="text-4xl mb-3">{icon}</div>
-            <h3 className="font-bold text-green-700 text-lg mb-1">{title}</h3>
-            <p className="text-gray-600 text-sm">{description}</p>
-        </div>
-    );
+function getTechDescription(techName: string): string {
+    const descriptions: Record<string, string> = {
+        'React': 'A JavaScript library for building user interfaces with reusable components and virtual DOM for efficient updates.',
+        'TypeScript': 'A strongly typed superset of JavaScript that adds static types, improving code quality and developer experience.',
+        'Tailwind': 'A utility-first CSS framework that lets you build designs directly in your markup with responsive modifiers.',
+        'Deno': 'A secure runtime for JavaScript and TypeScript that uses V8 and is built in Rust, with built-in TypeScript support.',
+        'Vite': 'Next generation frontend tooling that provides extremely fast development server start and hot module replacement.'
+    };
+    return descriptions[techName] || 'No description available.';
 }
